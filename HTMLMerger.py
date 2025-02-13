@@ -4,12 +4,18 @@ from bs4 import BeautifulSoup
 
 COLLECTION_PATH = 'C:\Projects\HTML Merge\Collection'
 
-#Finds all the HTML in an individual text's folder
+#Finds all the HTML files in an individual text's folder
 def collect_HTML():
+    html_pathnames = []
     print("Collect runs")
     for root, dirs, files in os.walk(COLLECTION_PATH):
         for file in files:
             if file.endswith('.html'):
-                print(os.path.join(root, file))
+                html_pathnames.append(os.path.join(root, file))
+            if file.endswith('.htm'):
+                html_pathnames.append(os.path.join(root, file))
+    
+    return html_pathnames
 
-collect_HTML()
+for pathname in collect_HTML():
+    print(pathname)
